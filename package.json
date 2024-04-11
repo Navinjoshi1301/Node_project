@@ -1,0 +1,17 @@
+{
+  "name": "chaibackend",
+  "version": "1.0.0",
+  "description": "a basic app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "navin joshi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
