@@ -89,7 +89,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 const loginUser = asyncHandler(async (req, res) => {
   const { email, username, password } = req.body;
-  if (!username || !email) {
+  if (!username && !email) {
     throw new ApiError(400, "username or email is required");
   }
   const user = await User.findOne({
@@ -97,11 +97,11 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 
   if (!user) {
-    ApiError(404, "User not exist");
+    throw new ApiError(404, "User not exist");
   }
   const isPasswordValid = await user.isPasswordCorrect(password);
   if (!isPasswordValid) {
-    ApiError(401, "Invalid user credentials");
+    throw new ApiError(401, "Invalid user credentials");
   }
 
   const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
