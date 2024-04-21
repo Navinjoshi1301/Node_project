@@ -1,6 +1,10 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+// const swaggerUI = require(‘swagger-ui-express’);
+// const swaggerSpec = require(‘./swagger’);
+
+import swaggerSetup from "./utils/swagger.js";
 
 const app = express();
 app.use(
@@ -13,7 +17,7 @@ app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extend: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
-
+swaggerSetup(app);
 // routes import
 import userRouter from "./routes/user.routes.js";
 
