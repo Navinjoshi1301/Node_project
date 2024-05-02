@@ -343,18 +343,26 @@ const getUserChannerProfile = asyncHandler(async (req, res) => {
     },
     {
       $project: {
-        fullName:1,
-        username:1,
-        subscriberCount:1,
-        channelSubscribedToCount:1,
-        isSubscribed:1,
-        avatar:1,
-        coverImage:1,
-        email:1
-
+        fullName: 1,
+        username: 1,
+        subscriberCount: 1,
+        channelSubscribedToCount: 1,
+        isSubscribed: 1,
+        avatar: 1,
+        coverImage: 1,
+        email: 1,
       },
     },
   ]);
+  if (!channel?.length) {
+    throw new ApiError(404, "channel does not exist");
+  }
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, channel[0], "User channel fetched successfully")
+    );
 });
 
 export {
