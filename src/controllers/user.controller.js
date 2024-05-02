@@ -138,8 +138,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
     {
-      $set: {
-        refreshToken: undefined,
+      $unset: {
+        refreshToken: 1,
       },
     },
     {
@@ -329,16 +329,18 @@ const getUserChannerProfile = asyncHandler(async (req, res) => {
     },
     {
       $addFields: {
-        subscriberCount: {
-          $size: "$subsribers",
+        subscribersCount: {
+          $size: "$subscribers",
         },
-        channelSubscribedToCount: {
+        channelsSubscribedToCount: {
           $size: "$subscribedTo",
         },
         isSubscribed: {
-          if: { $in: [req.user?._id, "$subscribers.sbuscriber"] },
-          then: true,
-          else: false,
+          $cond: {
+            if: { $in: [req.user?._id, "$subscribers.subscriber"] },
+            then: true,
+            else: false,
+          },
         },
       },
     },
@@ -346,8 +348,8 @@ const getUserChannerProfile = asyncHandler(async (req, res) => {
       $project: {
         fullName: 1,
         username: 1,
-        subscriberCount: 1,
-        channelSubscribedToCount: 1,
+        subscribersCount: 1,
+        channelsSubscribedToCount: 1,
         isSubscribed: 1,
         avatar: 1,
         coverImage: 1,
@@ -398,23 +400,25 @@ const getWatchHistory = asyncHandler(async (req, res) => {
             },
           },
           {
-            owner: {
-              $first: "$owner",
+            $addFields: {
+              owner: {
+                $first: "$owner",
+              },
             },
           },
         ],
       },
     },
   ]);
-  return res.status(
-    (200).json(
+  return res
+    .status(200)
+    .json(
       new ApiResponse(
         200,
         user[0].watchHistory,
         "watch history fetched successfully "
       )
-    )
-  );
+    );
 });
 
 export {
@@ -428,5 +432,5 @@ export {
   updateUserAvatar,
   updateUserCoverImage,
   getUserChannerProfile,
-  getWatchHistory
+  getWatchHistory,
 };
