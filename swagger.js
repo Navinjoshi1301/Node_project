@@ -5,7 +5,7 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Mini Blog API",
+      title: "You Tube API",
       description:
         "API endpoints for a mini blog service documented on Swagger",
       contact: {

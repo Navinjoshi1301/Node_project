@@ -19,7 +19,7 @@ const router = Router();
     /** POST Methods */
     /**
      * @openapi
-     * '/api/user/register':
+     * '/api/v1/users/register':
      *  post:
      *     tags:
      *     - User Controller
