@@ -40,9 +40,7 @@ function swaggerDocs(app, port) {
     swaggerUi.setup(swaggerSpec, {
       customCss: ".swagger-ui .topbar { display: none; }",
     })
-  ); // Optional: Hide topbar for cleaner UI
-
-  // Documentation in JSON format
+  ); 
   app.get("/docs.json", (req, res) => {
     if (!swaggerSpec) {
       return res
