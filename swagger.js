@@ -21,13 +21,13 @@ const options = {
         description: "Local server",
       },
       {
-        url: process.env.LIVE_URL || "https://<your-live-domain.com>", // Set LIVE_URL environment variable or provide default
+        url: process.env.LIVE_URL || "https://<your-live-domain.com>",
         description: "Live server",
       },
     ],
   },
   // Look for configuration in specified directories
-  apis: ["./src/routes/user.routes.js"], // Assuming your API routes are in files starting with 'router'
+  apis: ["./src/routes/user.routes.js"], 
 };
 
 const swaggerSpec = swaggerJsdoc(options);
