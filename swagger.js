@@ -11,7 +11,7 @@ const options = {
       contact: {
         name: "Desmond Obisi",
         email: "info@miniblog.com",
-        url: "https://github.com/DesmondSanctity/node-js-swagger", // Ensure valid URL
+        url: "https://github.com/DesmondSanctity/node-js-swagger", 
       },
       version: "1.0.0",
     },
