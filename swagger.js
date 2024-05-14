@@ -21,7 +21,7 @@ const options = {
         description: "Local server",
       },
       {
-        url: process.env.LIVE_URL || "https://<your-live-domain.com>",
+        url: process.env.LIVE_URL || "",
         description: "Live server",
       },
     ],
