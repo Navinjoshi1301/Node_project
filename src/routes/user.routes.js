@@ -63,6 +63,7 @@ router.route("/register").post(
 );
 
 
+
 router.route("/login").post(loginUser);
 
 // secured Routes
@@ -81,3 +82,4 @@ router
 router.route("/channel/:username").get(verifyJWT, getUserChannerProfile);
 router.route("/watchHistory").get(verifyJWT, getWatchHistory);
 export default router;
+
